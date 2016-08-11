@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright file="SettingsSchema.xsd" company="Microsoft">
+    Copyright (C) Microsoft. All rights reserved.
+  </copyright>
+-->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Settings">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Shared" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="Settings.PollingIntervalInSeconds" type="pollingintervalInt"  minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>The interval for settings polling in seconds. Valid value is between 10 and 86400.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Timestamp" type="xs:string"  minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>The timestamp for settings</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="LoadMetricsReportIntervalInSeconds" type="xs:nonNegativeInteger"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LoadMetricsReportInterval" type="xs:nonNegativeInteger"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FarmID" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SampleFrequency" type="xs:nonNegativeInteger"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DataCenterName" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableEndpoint" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobEndpoint" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="QueueEndpoint" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SmbShareList" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FabricConnectionString" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableFrontEnd" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobFrontEnd" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="QueueFrontEnd" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HostStyleFrontEnd" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="Encryption" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="Srp" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FarmName" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageClusterName" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobServiceGMSA" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="IsHyperConverged" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableStorageDnsNodeNameSuffix" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableSampling" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SampleCount" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SamplingEvaluationWindowInSeconds" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableBackgroundMaintenance" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DbScanThrottle" type="xs:nonNegativeInteger"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DbScanIntervalMinSec" type="xs:nonNegativeInteger"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DbScanIntervalMaxSec" type="xs:nonNegativeInteger"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RetentionPeriodForDeletedStorageAccountsInDays" type="RetentionPeriodInt"  minOccurs="0" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation>Retention period for deleted storage accounts to be kept before garbage collected. Valid value is between 0 and 9999.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BandwidthThrottling" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="IsEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+              <xs:element name="EnableCentralAggregator" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+              <xs:element name="AlgorithmVersion" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1" />
+              <xs:element name="EnableRequestCountTracking" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+              <xs:element name="UsageCollectionIntervalInSeconds" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+              <xs:element name="FeedbackRefreshIntervalInSeconds" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+              <xs:element name="NumberOfAccountsToSync" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1" />
+              <xs:element name="DefaultThrottleProbabilityDecayIntervalInSeconds" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+              <xs:element name="GracePeriodForFullThrottlingInRefreshIntervals" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+              <xs:element name="GracePeriodMaxThrottleProbability" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <!--The throttling setting for TPS-->
+              <xs:element name="OverallRequestThresholdInTps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="DefaultRequestThresholdInTps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="MinimumRequestThresholdInTps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="ToleranceFactorForTps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <!--The throttling setting for (internet) ingress-->
+              <xs:element name="OverallIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="DefaultIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="MinimumIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="ToleranceFactorForIngress" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <!--The throttling setting for intranet ingress-->
+              <xs:element name="OverallIntranetIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="DefaultIntranetIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="MinimumIntranetIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="ToleranceFactorForIntranetIngress" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <!--The throttling setting for (internet) egress-->
+              <xs:element name="OverallEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="DefaultEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="MinimumEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="ToleranceFactorForEgress" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <!--The throttling setting for intranet egress-->
+              <xs:element name="OverallIntranetEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="DefaultIntranetEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="MinimumIntranetEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="ToleranceFactorForIntranetEgress" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <!--The throttling setting for Total ingress-->
+              <xs:element name="OverallTotalIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="DefaultTotalIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="MinimumTotalIngressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="ToleranceFactorForTotalIngress" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <!--The throttling setting for Total egress-->
+              <xs:element name="OverallTotalEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="DefaultTotalEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="MinimumTotalEgressThresholdInGbps" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+              <xs:element name="ToleranceFactorForTotalEgress" type="xs:decimal" minOccurs="0" maxOccurs="1" />
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FrontEndCommon" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="NephosAllowPathStyleUris" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="NephosIncludeInternalDetailsInErrorResponses" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="Nephos.MaskClientIPAddressesInLogs" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HostStyleHttpPort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HostStyleHttpsPort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CorsAllowedOriginsList" type="UriList" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>The value of this setting should be valid Uri or Uri list that separated by semicolon.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="DataCenterUriHostSuffixes" type="HostName" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>The value of this setting should be a valid hostname.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="MaxEntriesPerCache" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxCacheRefreshQueueSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RequestDrainWaitTimeOnRoleShutdownInMs" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FeInjectionEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableAnalyticsLogging" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UsePartitionKeyV2ForTableXLogging" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FrontendManagementSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="OnlyAllowSystemKeyInKeyName" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableKeyNameInShareKeyAuthentication" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TableFrontEnd" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="ServiceNameInHostUrl" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UseSLATimeInAvailability" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinimumThreadPoolThreads" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CallbackThreadsCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveWorkerThreadThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveIOCompletionThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveMonitorIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAlivePercentage" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxConcurrentRequests" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingPercentCpuThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingPercentRequestsToThrottle" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingCpuMonitorIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MemoryThrottlingEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxMillsecondsBetweenMemorySamples" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MemoryThrottleThresholdSettings" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HttpListenPort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HttpsListenPort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SlbPorbePort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StampName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ServiceAssembly" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UriFullDnsName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BlobFrontEnd" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="ServiceNameInHostUrl" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UseSLATimeInAvailability" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinimumThreadPoolThreads" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CallbackThreadsCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveWorkerThreadThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveIOCompletionThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveMonitorIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAlivePercentage" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxConcurrentRequests" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingPercentCpuThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingPercentRequestsToThrottle" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingCpuMonitorIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MemoryThrottlingEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobCacheEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ReturnBlobWithLeaseFromCache" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UseBufferPoolInAsyncReadBuffer" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TryReadRangedBlobFromCache" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FailGetBlobWhenNullContentLength" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShouldDisposeBlobStreamForBlobPutOperations" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="XStreamMaxReadTimeoutInMs" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaintenanceIntervalInMs" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CacheMemoryLimitInMB" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaximumCacheEntryCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinimumCachedBlobSizeInBytes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaximumCachedBlobSizeInBytes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TimeToLiveForCacheEntryConsistencyCheckInMs" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MemoryBlockAllocationSizeInBytes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ReadFromSourceTimeoutInMs" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CacheAgingIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CacheAgingFactor" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LFUSizeOption" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PercentageCacheEntriesToRemoveWhenLimitReached" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxMillsecondsBetweenMemorySamples" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MemoryThrottleThresholdSettings" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HttpListenPort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HttpsListenPort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SlbPorbePort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StampName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ServiceAssembly" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UriFullDnsName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="QueueFrontEnd" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="ServiceNameInHostUrl" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UseSLATimeInAvailability" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinimumThreadPoolThreads" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CallbackThreadsCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveWorkerThreadThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveIOCompletionThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAliveMonitorIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadPoolBasedKeepAlivePercentage" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxConcurrentRequests" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingPercentCpuThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingPercentRequestsToThrottle" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuBasedKeepAliveThrottlingCpuMonitorIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MemoryThrottlingEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxMillsecondsBetweenMemorySamples" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MemoryThrottleThresholdSettings" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HttpListenPort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HttpsListenPort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SlbPorbePort" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StampName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ServiceAssembly" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UriFullDnsName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BlobSvc" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="StreamMapMinContainerOccupancyPercent" type="percentage" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Minimum chunck store container file occupancy. Valid value is between 0 and 100.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="DataMinContainerOccupancyPercent" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaximumAllowedCopyBlobRequests" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShallowGcInterval" type="gcInterval" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Shallow garbage collection interval in milliseconds. Valid value is between 60000 and 172800000.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ContainerGcInterval" type="gcInterval" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Container garbage collection interval in milliseconds. Valid value is between 60000 and 172800000.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="UncommittedBlocksGCInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ExpiryTimeForUncommittedBlocks" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ContainerUsageInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThrottlingEventTimeInMilliseconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetaDataStoreDrive" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetaDataStorePath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DataStoreDrive" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DataStorePath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PageBlobDataPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SmbShareList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxDatabaseSessionsPerInstance" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxDatabaseTransactionsPerInstance" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UnsafeForceLazyFlushForCommitTransaction" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobTableCacheExpiryTime" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobTableCacheScavengerInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobCopyResumeInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobTableCacheMaxEntryCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DataStoreSessionCacheExpiryTime" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DataStoreSessionCacheScavengerInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="GlobalTracingLevel" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PageBlobCheckpointIntervalDataWrittenInMB" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PageBlobCheckpointIntervalRecordsWritten" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PageBlobCheckpointIntervalSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PageBlobComponentFileSizeInMB" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PageBlobComponentFileRetentionCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PageBlobDbUpdateRetryCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PageBlobDbUpdateRetryInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableAtomicPageBlobUpdate" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CosmosFileSizeInMb" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CosmosMaxAllowedDiskUsageInMb" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CosmosVerboseLogInBinary" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CosmosLogEnabled" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CosmosLogDirectory" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CosmosLogDllPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="VolumeAttachRetryInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobEntrySecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobContainerSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobAcquisitionSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobManagementSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobTestSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TestHookBlobServiceAuthLevel" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Metrics" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="TransactionDataFolder" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="GCTenantStorageAnalyticsDataThreadNumber" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SendTenantStorageAnalyticsDataThreadNumber" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsLogJobDelayDurationInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsLogJobStepInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BucketCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsAccountName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsAccountKey" type="EncryptedString" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AggregateTimeIntervalInMINS" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FlusherRetryInitializeTimeIntervalInMINS" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TransactionLoggingTerminateTimeInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ContainerSwitchTimeIntervalInMINS" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ContainerSwitchPreparationTimeIntervalInMINS" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RefreshFreeJobTimerDueTimeInSecs" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RefreshFreeJobTimerIntervalInSecs" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RefreshWorkingJobTimerDueTimeInSecs" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RefreshWorkingJobTimerIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableSystemApiLevelTransactionAggregation" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableTenantApiLevelTransactionAggregation" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableApiLevelPerformanceCounterCollection" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TransactionRawDataRetentionInDays" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FeLogRawDataRetentionInDays" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyAggregationDataRetentionInDays" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyAggregationDataRetentionInDays" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyAggregationDataRetentionInDays" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CreateJobTimerDueTimeInSecs" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CreateJobTimerIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="GCJobTimerDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="GCJobTimerIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RefreshStorageAnalyticsAccountInfoIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsLoggingJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsLoggingJobEndDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsLoggingJobGCDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsLoggingJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsLoggingJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyTransactionSlaJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyTransactionSlaJobEndDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyTransactionSlaJobGCDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyTransactionSlaJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyTransactionSlaJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTransactionUsageAndSlaJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTransactionUsageAndSlaJobEndDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTransactionUsageAndSlaJobGCDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTransactionUsageAndSlaJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTransactionUsageAndSlaJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionUsageJobStartTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionUsageJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionUsageJobEndDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionUsageJobGCDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionUsageJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionUsageJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionSlaJobStartTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionSlaJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionSlaJobEndDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionSlaJobGCDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionSlaJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyTransactionSlaJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTableCapacityUsageJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTableCapacityUsageJobEndDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTableCapacityUsageJobGCDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTableCapacityUsageJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyTableCapacityUsageJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyCapacityUsageJobStartTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyCapacityUsageJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyCapacityUsageJobEndDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyCapacityUsageJobGCDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyCapacityUsageJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyCapacityUsageJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyPerfCounterJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyPerfCounterJobEndDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyPerfCounterJobGCDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyPerfCounterJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinutelyPerfCounterJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyPerfCounterJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyPerfCounterJobEndDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyPerfCounterJobGCDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyPerfCounterJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HourlyPerfCounterJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyPerfCounterJobStartTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyPerfCounterJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyPerfCounterJobEndDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyPerfCounterJobGCDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyPerfCounterJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyPerfCounterJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyGCJobStartTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyGCJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyGCJobEndDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyGCJobGCDueTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyGCJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DailyGCJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsGCJobStartTimeInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsGCJobStartDelayDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsGCJobEndDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsGCJobGCDueTimeInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsGCJobMaxRetryTimes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAnalyticsGCJobRetryIntervalInMins" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsTableEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsBlobEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsManagementSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TableServer" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="DBCloseGracePeriodInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinScanCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxInstances" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxCacheSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxConnections" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxVersionStorePages" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogFileSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CheckpointDepthMax" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogBufferSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DatabasePageSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TransactionLogFolderName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DatabaseFileName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="NewRequestSamplingRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxTrackingAccountCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PendingRequestCountThrottlingThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuUsageThrottlingThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ScanThrottlingThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuUsagePecentageThrottling" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxThrottlingProbabilityForAccount" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CommandInBatchWeightForThrottling" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TsSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TsManagementSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TsPpSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TableMaster" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="TableServerAppName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableServerServiceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableServerServiceType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FreeSpaceUpdateInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShareUsageThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxCacheSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxConnections" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxVersionStorePages" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogFileSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DatabasePageSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShareForTM" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableServiceShareList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableServerInstanceCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnablePartitionAvailabilityCheck" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AzurePartitionAvailabilityLoggerConnectionString" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AzurePartitionAvailabilityLoggerTenant" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TmSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TmManagementSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TmPpSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AccountAndContainer" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MaxCacheSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxConnections" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxVersionStorePages" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogFileSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DatabasePageSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DBLocation" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableGC" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ContainerGCFullScanIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ContainerGcQueueScanIntervalInMilliseconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AccountGCFullScanIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AccountGcQueueScanIntervalInMilliseconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxGCThreadNumber" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="GCWaitPeriodInMilliseconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CreationExpiryInMilliseconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HoldingPeriodInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxNetDataSizeForListContainers" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableBlobUsage" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableShareCapacityMonitor" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UsageIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ExcludingBlobMetadataInUsage" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DataStoreRecoverableErrorToleranceInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AccountSecretKeyMigrationPeriodInDays" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AccountSecretKeyMigrationCheckIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AccountSecretKeyMigrationWorkIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShareCapacityCollectingIntervalInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="WacAccountSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="WacBlobContainerSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="WacTableContainerSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="WacQueueContainerSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="WacManagementSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="WacPpSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MonitoringService" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MaxCacheSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxConnections" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxVersionStorePages" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HealthHistoryDays" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TestAccountName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MonitoringServiceList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TestAccountKey" type="EncryptedString" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HealthDataShare" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShareCapacityWarningThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShareCapacityCriticalThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShareCapacityPercentageWarningThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ShareCapacityPercentageCriticalThreshold" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DisableHealthCheck" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HealthMonitoringSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HealthManagementSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="HealthPressurePointSecurityDescriptor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Deployment" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="TableFENodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CpuUsageCapacity" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ClusterVersion" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FabricLogRoot" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FabricDataRoot" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FabricImageStore" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FabricDiagnosticStore" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ServiceAccountName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AbsCpuUsage" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EsentInstancesCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricRunnerInstancesCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DetailedFabricNodes" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TSNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TMNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ACNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobFENodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="QueueFENodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsMasterNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsRunnerNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MonitoringServiceList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobBackEndNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FabricNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MonitoringServiceNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TSList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TMList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ACList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsMasterList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsRunnerList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobBackEndList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableFEList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobFEList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="QueueFEList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="DeployedNodesMapping" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TSPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TMPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ACPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableFEPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobFEPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="QueueFEPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsRunnerPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsMasterPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MonitoringServicePlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FMTargetReplicaSetSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FMMinReplicaSetSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="NSTargetReplicaSetSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="NSMinReplicaSetSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CMTargetReplicaSetSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CMMinReplicaSetSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FMExpectedClusterSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="NSPartitionCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RatioCpuUsage" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MinLoadBalancingInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SendLoadReportInterval" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxPercentUnhealthyNodes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MaxPercentUnhealthyApplications" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ResourceProviderPlacement" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SrpNodeList" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ConsiderWarningAsError" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnableQueue" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobServiceAccount" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TMServiceAccount" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TSServiceAccount" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ACServiceAccount" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="FEServiceAccount" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricsServiceAccount" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MonitoringServiceAccount" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SrpServiceAccount" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SRP" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="AcquisitionsEnumMaxResults" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AdminExtensionName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AdminExtensionVersion" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ApiVersionAdmin" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ApiVersionCrp" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SupportedSubscriptionApiVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SupportedTenantApiVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SupportedStorageAccountTypes" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BaseSRPServiceAddress" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SrpPrivateAddress" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobRepositoryShareName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CosmosLoggingEnabled" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EtwLoggingEnabled" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="MetricResultCountMax" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="OperationManagerAbandonedOperationInMinutes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="OperationManagerConcurrentOperations" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="OperationManagerMaxAbandonedRetryCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="OperationManagerMaxConcurrencyRetryCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="OperationManagerOperationTimeOutInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="OperationManagerRetryOperationInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RetryAfterHeaderAdminNodeOperation" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RetryAfterHeaderStorageAccountCreate" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RetryAfterHeaderStorageAccountDelete" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RetryAfterHeaderSubscriptionDelete" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RetryAfterHeaderSubscriptionRegister" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="RpcInvocationTimeoutInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SchedulerRunCheckForAbandonedOperationsInSeconds" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SchedulerRunCheckForDeleteAccountCollectionInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SchedulerRunCheckForEnforceCapacityInMinutes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SchedulerRunCheckForGetUsageInMinutes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SchedulerRunCheckForOldCompletedOperationsInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SrpDatabaseName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAccountDeletedGcConcurrency" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="CompletedOperationRetentionPolicyInDays" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="StorageAccountMaxTagsLimit" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SynchronousApiRetryAfterHeader" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TableUriFormat" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TenantExtensionApiVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TenantExtensionName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ThreadpoolMinimumWorkingThreads" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TraceLevel" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UsageCollectDataCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UsageCollectPeriodInHours" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SrpFabricConnectionString" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SrpFabricImageStore" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="SrpInstanceConnectionString" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BaseAdminApiEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BaseTenantApiEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobRepositoryServer" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="BlobRepositoryDirectory" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="QuotaApiEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UsageApiEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UsageDatabaseName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UsageSrpInstanceConnectionString" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AdminExtensionEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TenantExtensionEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="UseWildCardDnsRecords" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="LogSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ArmAuthorizationApiVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ArmAuthorizationEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="AuthorizedGroups" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnablePrivateEndpointAuthorization" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EnablePublicEndpointCertAuthorization" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="WatchDogSvc" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="DataPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="pollingintervalInt">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="86400"></xs:maxInclusive>
+      <xs:minInclusive value="10"></xs:minInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="percentage">
+    <xs:restriction base="xs:nonNegativeInteger">
+      <xs:maxInclusive value="100"></xs:maxInclusive>
+      <xs:minInclusive value="0"></xs:minInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RetentionPeriodInt">
+    <xs:restriction base="xs:nonNegativeInteger">
+      <xs:maxInclusive value="9999"></xs:maxInclusive>
+      <xs:minInclusive value="0"></xs:minInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="gcInterval">
+    <xs:restriction base="xs:positiveInteger">
+      <!--2 day-->
+      <xs:maxInclusive value="172800000"></xs:maxInclusive>
+      <!--1 min-->
+      <xs:minInclusive value="60000"></xs:minInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EncryptedString">
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UNCString">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([A-Za-z]:\\(\w|.|\\)*)|(\\{2}\w+(\w|.|\\)*)" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UriList">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="^$|^http(s?)://[^;]*(;http(s?)://[^;]*)*$" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="HostName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="^$|^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
